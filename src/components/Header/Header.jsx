@@ -76,8 +76,8 @@ function Header() {
 {authStatus && (<LogoutBtn />)}
 </ul>
 <div className='sm:hidden'>
-<DropdownMenu >
-      <DropdownMenuTrigger asChild>
+<DropdownMenu  >
+      <DropdownMenuTrigger className='rounded-xl' asChild>
         <Button className="bg-white" variant="default">Menu</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent  className="w-56 flex bg-white flex-col">
