@@ -17,29 +17,28 @@ export default function RTE({name,control,label,defaultValue=''}) {
                 height: 500,
                 menubar: true,
                 plugins: [
-                    "image",
                     "advlist",
                     "autolink",
                     "lists",
                     "link",
-                    "image",
                     "charmap",
                     "preview",
                     "anchor",
+                    "image",
                     "searchreplace",
                     "visualblocks",
                     "code",
                     "fullscreen",
                     "insertdatetime",
-                    "media",
                     "table",
                     "code",
                     "help",
                     "wordcount",
                     "anchor",
+                    "codesample",
                 ],
                 toolbar:
-                    "undo redo | blocks | image | bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
+                    "codesample | undo redo | blocks | image |bold italic forecolor | alignleft aligncenter bold italic forecolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent |removeformat | help",
             content_style: "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }"
             }}
             onEditorChange={onChange}  //works with the onChange of field

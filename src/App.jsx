@@ -53,7 +53,7 @@ useEffect(()=>{
           {" "}
           <EditPost />
         </Protected>} />
-        <Route path='/all-posts' element={<Protected >
+        <Route path='/my-posts' element={<Protected >
           {" "}
           <MyPosts />
         </Protected>} /> 

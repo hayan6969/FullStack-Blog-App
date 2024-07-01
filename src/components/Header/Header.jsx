@@ -3,16 +3,31 @@ import {Container,Logo,LogoutBtn} from '../index'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { useNavigate} from 'react-router-dom'
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { useDispatch } from 'react-redux'
+import { logout } from '@/store/authSlice'
 
 
 function Header() {
+  const dispatch = useDispatch()
+  const [showStatusBar, setShowStatusBar] = React.useState(true)
+  const [showActivityBar, setShowActivityBar] = React.useState(false)
+  const [showPanel, setShowPanel] = React.useState(false)
   const authStatus = useSelector((state) => state.auth.status)
   const navigate = useNavigate()
   const navItems=[
     {
-      name:'home',
+      name:'Home',
       slug:'/',
-      active:true
+      active:authStatus
     },
     {
       name:'Login',
@@ -25,8 +40,8 @@ function Header() {
       active:!authStatus
     },
     {
-      name:'All Posts',
-      slug:'/all-posts',
+      name:'My Posts',
+      slug:'/my-posts',
       active:authStatus
     },
     {
@@ -36,15 +51,16 @@ function Header() {
     }
   ]
   return (
-    <header className='py-3  border-b-2 border-b-black'>
+    <header className='py-2  border-b-2 border-b-black'>
 <Container>
-  <nav className='flex'>
+  <nav className='flex justify-between'>
 <div className='mr-4'>
 <Link to='/'>
-<Logo width='100px' />
+<Logo  />
 </Link>
 </div>
-<ul className='flex ml-auto'>
+<div>
+<ul className='flex ml-auto max-sm:hidden'>
 {
   navItems.map((item)=>(
     item.active && <li key={item.name} className='mr-4'>
@@ -59,6 +75,29 @@ function Header() {
 }
 {authStatus && (<LogoutBtn />)}
 </ul>
+<div className='sm:hidden'>
+<DropdownMenu >
+      <DropdownMenuTrigger asChild>
+        <Button className="bg-white" variant="default">Menu</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent  className="w-56 flex bg-white flex-col">
+       
+       {
+          navItems.map((item)=>(
+            item.active && <DropdownMenuItem  key={item.name} value={item.slug} >
+            <div className="hover:bg-yellow-200 w-full p-1" onClick={()=>(navigate(item.slug))}>{item.name}</div>
+          </DropdownMenuItem>
+          ))
+       }
+       {
+        authStatus &&  <DropdownMenuItem>
+          <div className="hover:bg-yellow-200 w-full p-1" onClick={()=>(dispatch(logout))}>Logout</div>
+        </DropdownMenuItem>
+       }
+      </DropdownMenuContent>
+    </DropdownMenu>
+</div>
+</div>
   </nav>
 </Container>
     </header>

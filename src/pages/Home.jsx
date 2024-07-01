@@ -47,13 +47,13 @@ function Home() {
  }
  else{
     return (
-        <div className='w-full py-8'>
+        <div className='w-full h-auto py-8'>
             <Container>
-                <div className='flex flex-wrap'>
+                <div className='grid gap-2 w-full  ' style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', justifyContent:'center'}}>
                     {
                         posts.map((post)=>(
-                            <div key={post.$id} className='p-2 w-1/4'>
-                                <PostCard $id={post.$id} title={post.Title} featured_image={post.featuredImage}/>
+                            <div key={post.$id} className='p-2 '>
+                                <PostCard $id={post.$id} title={post.Title} content={post.Content} featured_image={post.featuredImage}/>
                             </div>
                         ))
                     }

@@ -64,7 +64,7 @@ export default function Post() {
                 <div className="w-full mb-6">
                     <h1 className="text-2xl font-bold">{post.Title}</h1>
                 </div>
-                <div className="browser-css">
+                <div className="w-full overflow-wrap font-poppins bg-white rounded-xl p-2" style={{ display: 'flex', flexWrap: 'wrap' }} >
                     {parse(post.Content)}
                     </div>
             </Container>

@@ -30,9 +30,12 @@ function PostForm({ postData }) {
         const updatedPost = await appwriteService.updatePost(postData.$id, {
             ...data,
             featuredImage: file ? file.$id : undefined 
-        }).finally(()=>Navigate(`/post/${postData.$id}`))
+        })
 
-        console.log('the updated post is : ',updatedPost)
+        if (updatedPost) {
+            Navigate(`/post/${updatedPost.$id}`)
+        }
+
 
 
         
@@ -82,8 +85,8 @@ function PostForm({ postData }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2">
+    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap max-sm:flex-col max-sm:items-center">
+      <div className="w-2/3 px-2 max-sm:w-full">
         <Input
           label="Title :"
           placeholder="Title"
@@ -109,7 +112,7 @@ function PostForm({ postData }) {
           defaultValue={getValues("Content")}
         />
       </div>
-      <div className="w-1/3 px-2">
+      <div className="w-1/3 px-2 max-sm:w-full">
         <Input
           label="Featured Image :"
           type="file"

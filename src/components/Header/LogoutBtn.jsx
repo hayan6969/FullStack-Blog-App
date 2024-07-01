@@ -14,7 +14,7 @@ authService.logout()
 })
     }
   return (
-    <button onClick={logoutHandler} className='p-2 border-2 border-black rounded-xl hover:bg-black hover:text-yellow-300'>Logout</button>
+    <button onClick={logoutHandler} className={`p-2 border-2 h-fit border-black rounded-xl  hover:bg-black hover:text-yellow-300 ` }>Logout</button>
   )
 }
 
